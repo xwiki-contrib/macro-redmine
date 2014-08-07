@@ -48,9 +48,9 @@
     </extensions>
   </build>
   <scm>
-    <connection>scm:git:git@github.com:4F2E4A2E/xwiki-platform-redmine-macro.git</connection>
-    <developerConnection>scm:git:git@github.com:4F2E4A2E/xwiki-platform-redmine-macro.git</developerConnection>
-    <url>https://github.com/4F2E4A2E/xwiki-platform-redmine-macro.git</url>
+    <connection>scm:git:git@github.com:4F2E4A2E/xwiki-redminemacro.git</connection>
+    <developerConnection>scm:git:git@github.com:4F2E4A2E/xwiki-redminemacro.git</developerConnection>
+    <url>https://github.com/4F2E4A2E/xwiki-redminemacro.git</url>
   </scm>
   <distributionManagement>
     <repository>
