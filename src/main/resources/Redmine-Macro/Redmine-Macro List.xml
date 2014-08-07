@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>Redmine-Macro</web>
+<name>Redmine-Macro List</name>
+<language></language>
+<defaultLanguage>de</defaultLanguage>
+<translation>0</translation>
+<parent>Redmine-Macro.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1407393454000</creationDate>
+<date>1407412781000</date>
+<contentUpdateDate>1404393672000</contentUpdateDate>
+<version>4.5</version>
+<title></title>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>true</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>false</hidden>
+<object>
+<class>
+<name>XWiki.WikiMacroClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>9</number>
+<prettyName>Macro code</prettyName>
+<rows>20</rows>
+<size>40</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<contentDescription>
+<disabled>0</disabled>
+<name>contentDescription</name>
+<number>8</number>
+<prettyName>Content description (Not applicable for "No content" type)</prettyName>
+<rows>5</rows>
+<size>40</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</contentDescription>
+<contentType>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>contentType</name>
+<number>7</number>
+<prettyName>Macro content type</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator>|</separator>
+<separators>|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>Optional|Mandatory|No content</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</contentType>
+<defaultCategory>
+<disabled>0</disabled>
+<name>defaultCategory</name>
+<number>4</number>
+<prettyName>Default category</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</defaultCategory>
+<description>
+<disabled>0</disabled>
+<name>description</name>
+<number>3</number>
+<prettyName>Macro description</prettyName>
+<rows>5</rows>
+<size>40</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</description>
+<id>
+<disabled>0</disabled>
+<name>id</name>
+<number>1</number>
+<prettyName>Macro id</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</id>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>2</number>
+<prettyName>Macro name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<supportsInlineMode>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>supportsInlineMode</name>
+<number>5</number>
+<prettyName>Supports inline mode</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</supportsInlineMode>
+<visibility>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>visibility</name>
+<number>6</number>
+<prettyName>Macro visibility</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator>|</separator>
+<separators>|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>Current User|Current Wiki|Global</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</visibility>
+</class>
+<name>Redmine-Macro.Redmine-Macro List</name>
+<number>0</number>
+<className>XWiki.WikiMacroClass</className>
+<guid>be484754-247b-45b6-8c75-6ee13206380e</guid>
+<property>
+<code>{{velocity}}
+$xwiki.ssfx.use("js/xwiki/table/table.css")
+$xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
+{{/velocity}}
+
+{{groovy}}
+
+import groovy.json.*
+
+
+def customObject = xwiki.getDocument("Redmine-Macro.RedmineMacroConfiguration").getObject("Redmine-Macro.RedmineMacroConfigurationClass")
+
+def ticketRedmine = customObject.getProperty("redmineUrl").value
+def redmineKeyValue = customObject.getProperty("redmineUserApiKey").value
+
+def redmineKeyParam = "key"
+def redmineKey = redmineKeyParam + "=" + redmineKeyValue 
+
+def redmineKeyValueMsg = "&lt;redmineApiUserKey&gt;"
+
+try {
+
+def defaultUrl = "$xcontext.macro.params.ticketRedmineListUrl"
+defaultUrl = "$defaultUrl".replaceAll('issues', 'issues.json')
+
+def url = ""
+if(defaultUrl.contains("?")){
+  url = defaultUrl + "&amp;" + redmineKey
+}else{
+  url = defaultUrl + "?" + redmineKey
+}
+
+def root = new JsonSlurper().parseText(url.toURL().text)
+
+println "(% class=\"sortable filterable doOddEven\" id=\"ticketListRedmine\" %)"
+print "(% class=\"sortHeader\" %)"
+println "|= ID |= Tracker |= Status |= Thema "
+  
+root.issues.each() { issue -&gt;
+  println "| [[#${issue.id}&gt;&gt;url:$ticketRedmine/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
+}
+
+} catch( Exception e ){
+  println "Something went wrong. Please contact the developer."
+  def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
+  print "{{error}} {{{ $exceptionMsg }}} {{/error}}"
+}
+
+
+
+{{/groovy}}</code>
+</property>
+<property>
+<contentDescription></contentDescription>
+</property>
+<property>
+<contentType>No content</contentType>
+</property>
+<property>
+<defaultCategory></defaultCategory>
+</property>
+<property>
+<description>Listet Tickets vom Redmine Ticketsystem in einer Tabelle auf. </description>
+</property>
+<property>
+<id>ticketListRedmine</id>
+</property>
+<property>
+<name>Redmine Ticket  - List of Issues</name>
+</property>
+<property>
+<supportsInlineMode>1</supportsInlineMode>
+</property>
+<property>
+<visibility>Global</visibility>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.WikiMacroParameterClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<defaultValue>
+<disabled>0</disabled>
+<name>defaultValue</name>
+<number>4</number>
+<prettyName>Parameter default value</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</defaultValue>
+<description>
+<disabled>0</disabled>
+<name>description</name>
+<number>2</number>
+<prettyName>Parameter description</prettyName>
+<rows>5</rows>
+<size>40</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</description>
+<mandatory>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>mandatory</name>
+<number>3</number>
+<prettyName>Parameter mandatory</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</mandatory>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Parameter name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+</class>
+<name>Redmine-Macro.Redmine-Macro List</name>
+<number>0</number>
+<className>XWiki.WikiMacroParameterClass</className>
+<guid>4489be66-9f68-4172-88d7-eaffa9153584</guid>
+<property>
+<defaultValue>https://ticket.dev.example.com/issues</defaultValue>
+</property>
+<property>
+<description>Fügen Sie die Redmine-URl ein.</description>
+</property>
+<property>
+<mandatory>1</mandatory>
+</property>
+<property>
+<name>ticketRedmineListUrl</name>
+</property>
+</object>
+<content></content></xwikidoc>

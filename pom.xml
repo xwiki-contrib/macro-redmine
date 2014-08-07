@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ *
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ 
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>xwiki-redminemacro</artifactId>
+  <packaging>xar</packaging>
+  <name>XWiki Contrib - Redmine-Macro</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Lists Redmine issues on XWiki.</description>
+  <properties>
+    <xwiki.clirr.previous.version>1.0</xwiki.clirr.previous.version>
+    <xar.verify.skip>true</xar.verify.skip>
+  </properties>
+
+  <build>
+    <extensions>
+      <!-- Needed to add support for the "xar" packaging -->
+      <!-- Not using the default version (4.0) because there is no way to disable XAR verify before 4.3. To be removed when upgrading. -->
+      <extension>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-tool-xar-handlers</artifactId>
+        <version>3.5.1</version>
+      </extension>
+    </extensions>
+  </build>
+  <scm>
+    <connection>scm:git:git@github.com:4F2E4A2E/xwiki-platform-redmine-macro.git</connection>
+    <developerConnection>scm:git:git@github.com:4F2E4A2E/xwiki-platform-redmine-macro.git</developerConnection>
+    <url>https://github.com/4F2E4A2E/xwiki-platform-redmine-macro.git</url>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>xwiki-staging</id>
+      <name>XWiki Staging Repository</name>
+      <url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+  <developers>
+    <developer>
+      <id>4F2E4A2E</id>
+      <name>O.J. Sousa Rodrigues</name>
+      <email>osoriojaques@gmail.com</email>
+    </developer>
+  </developers>
+</project>
