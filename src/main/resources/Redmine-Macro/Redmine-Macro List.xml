@@ -267,7 +267,7 @@ root.issues.each() { issue -&gt;
 <className>XWiki.WikiMacroParameterClass</className>
 <guid>4489be66-9f68-4172-88d7-eaffa9153584</guid>
 <property>
-<defaultValue>https://ticket.dev.example.com/issues</defaultValue>
+<defaultValue>https://ticket.example.com/issues</defaultValue>
 </property>
 <property>
 <description>Fügen Sie die Redmine-URl ein.</description>
