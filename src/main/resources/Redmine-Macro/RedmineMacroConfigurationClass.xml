@@ -20,7 +20,7 @@
 <comment>Klassen-Eigenschaft aktualisiert</comment>
 <minorEdit>true</minorEdit>
 <syntaxId>xwiki/2.0</syntaxId>
-<hidden>false</hidden>
+<hidden>true</hidden>
 <class>
 <name>Redmine-Macro.RedmineMacroConfigurationClass</name>
 <customClass></customClass>

@@ -20,7 +20,7 @@
 <comment></comment>
 <minorEdit>true</minorEdit>
 <syntaxId>xwiki/2.1</syntaxId>
-<hidden>false</hidden>
+<hidden>true</hidden>
 <object>
 <class>
 <name>Redmine-Macro.RedmineMacroConfigurationClass</name>
@@ -63,7 +63,7 @@
 <className>Redmine-Macro.RedmineMacroConfigurationClass</className>
 <guid>582ba272-b26d-4e2b-b5d5-7aaaa0bf3a91</guid>
 <property>
-<redmineUrl>https://ticket.dev.example.com/issues</redmineUrl>
+<redmineUrl>https://ticket.example.com/issues</redmineUrl>
 </property>
 <property>
 <redmineUserApiKey></redmineUserApiKey>

@@ -20,7 +20,7 @@
 <comment></comment>
 <minorEdit>true</minorEdit>
 <syntaxId>xwiki/2.1</syntaxId>
-<hidden>false</hidden>
+<hidden>true</hidden>
 <object>
 <class>
 <name>XWiki.WikiMacroClass</name>
@@ -158,7 +158,7 @@ def redmineKeyValueMsg = "&lt;redmineApiUserKey&gt;"
 
 try {
 
-def defaultUrl = "$xcontext.macro.params.ticketRedmineListUrl"
+def defaultUrl = "$xcontext.macro.params.url"
 defaultUrl = "$defaultUrl".replaceAll('issues', 'issues.json')
 
 def url = ""
@@ -181,7 +181,7 @@ root.issues.each() { issue -&gt;
 } catch( Exception e ){
   println "Something went wrong. Please contact the developer."
   def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
-  print "{{error}} {{{ $exceptionMsg }}} {{/error}}"
+  println "{{error}} {{{ $exceptionMsg }}} {{/error}}"
 }
 
 
@@ -201,7 +201,7 @@ root.issues.each() { issue -&gt;
 <description>Listet Tickets vom Redmine Ticketsystem in einer Tabelle auf. </description>
 </property>
 <property>
-<id>ticketListRedmine</id>
+<id>listRedmineQueryResult</id>
 </property>
 <property>
 <name>Redmine Ticket  - List of Issues</name>
@@ -276,7 +276,7 @@ root.issues.each() { issue -&gt;
 <mandatory>1</mandatory>
 </property>
 <property>
-<name>ticketRedmineListUrl</name>
+<name>url</name>
 </property>
 </object>
 <content></content></xwikidoc>

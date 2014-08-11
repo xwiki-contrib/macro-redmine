@@ -20,7 +20,7 @@
 <comment></comment>
 <minorEdit>true</minorEdit>
 <syntaxId>xwiki/2.1</syntaxId>
-<hidden>false</hidden>
+<hidden>true</hidden>
 <object>
 <class>
 <name>XWiki.WikiMacroClass</name>
@@ -159,7 +159,7 @@ def redmineKeyValueMsg = "&lt;redmineApiUserKey&gt;"
 def defaultUrl = ""
 def url = ""
 def root = null
-def issuesList = "$xcontext.macro.params.ticketRedmineIssueNumber".replaceAll(" ", "")
+def issuesList = "$xcontext.macro.params.issues".replaceAll(" ", "")
 
 issuesList = issuesList.split(",")
 
@@ -175,18 +175,16 @@ for (issueNumber in issuesList) {
     root = new JsonSlurper().parseText(url.toURL().text)
     println "| [[#${root.issue.id}&gt;&gt;url:$ticketRedmine/${root.issue.id}|]] | {{{ ${root.issue.tracker.name} }}} | {{{ ${root.issue.status.name} }}} | {{{ ${root.issue.subject} }}}"
 
-  } catch( Exception e ) {
+  } catch( FileNotFoundException e ) {
     println "| {{{ $issueNumber }}} | {{{ - }}} | {{{ - }}} | {{{ - }}}"
-    def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
-    print "{{error}} {{{ $exceptionMsg }}} {{/error}}"
   }
 }
 
 
 } catch( Exception e ) {
-  println "Something went wrong. Please contact the developer."
+  println "\nSomething went wrong. Please contact the developer."
   def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
-  print "{{error}} {{{ $exceptionMsg }}} {{/error}}"
+  println "{{error}} {{{ $exceptionMsg }}} {{/error}}"
 }
 
 {{/groovy}}</code>
@@ -204,7 +202,7 @@ for (issueNumber in issuesList) {
 <description>Dieses Macro wird ein Ticket auflisten anhand der Ticketnummer.</description>
 </property>
 <property>
-<id>ticketIssueRedmine</id>
+<id>listRedmineIssues</id>
 </property>
 <property>
 <name>Redmine Ticket - Ticket</name>
@@ -273,13 +271,13 @@ for (issueNumber in issuesList) {
 <defaultValue>1</defaultValue>
 </property>
 <property>
-<description>Fügen Sie hier die Ticketnummer ein.</description>
+<description>Comma separated issue numbers.</description>
 </property>
 <property>
 <mandatory>1</mandatory>
 </property>
 <property>
-<name>ticketRedmineIssueNumber</name>
+<name>issues</name>
 </property>
 </object>
 <content></content></xwikidoc>
