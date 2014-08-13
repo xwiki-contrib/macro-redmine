@@ -56,6 +56,8 @@
 	<properties>
 		<!-- Don't run CLIRR here since there's no Java code. -->
 		<xwiki.clirr.skip>true</xwiki.clirr.skip>
+		<!-- Skiping enforcer since nothing else seams to help: http://jira.xwiki.org/browse/XCOMMONS-553 -->
+		<xwiki.enforcer.skip>false</xwiki.enforcer.skip>
 	</properties>
 
 	<build>
