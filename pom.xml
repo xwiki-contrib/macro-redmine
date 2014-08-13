@@ -26,9 +26,9 @@
  
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-redminemacro</artifactId>
+  <artifactId>xwiki-macro-redmine</artifactId>
   <packaging>xar</packaging>
-  <name>XWiki Contrib - Redmine-Macro</name>
+  <name>XWiki Contrib - Macro Redmine</name>
   <version>0.0.2-SNAPSHOT</version>
   <description>Lists Redmine issues on XWiki.</description>
   <properties>
