@@ -57,7 +57,7 @@
 		<!-- Don't run CLIRR here since there's no Java code. -->
 		<xwiki.clirr.skip>true</xwiki.clirr.skip>
 		<!-- Skiping enforcer since nothing else seams to help: http://jira.xwiki.org/browse/XCOMMONS-553 -->
-		<xwiki.enforcer.skip>true</xwiki.enforcer.skip>
+		<enforcer.skip>true</enforcer.skip>_
 	</properties>
 
 	<build>
@@ -92,4 +92,22 @@
 			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
+
+ <!-- more infos on here: http://contrib.xwiki.org/xwiki/bin/view/Main/WebHome -->
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
