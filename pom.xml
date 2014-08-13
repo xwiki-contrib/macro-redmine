@@ -47,11 +47,11 @@
       </extension>
     </extensions>
   </build>
-  <scm>
-    <connection>scm:git:git@github.com:4F2E4A2E/xwiki-redminemacro.git</connection>
-    <developerConnection>scm:git:git@github.com:4F2E4A2E/xwiki-redminemacro.git</developerConnection>
-    <url>https://github.com/4F2E4A2E/xwiki-redminemacro.git</url>
-  </scm>
+ <scm>
+		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
+		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
+		<url>https://github.com/xwiki-contrib/macro-redmine/trunk/</url>
+	</scm>
   <distributionManagement>
     <repository>
       <id>xwiki-staging</id>
