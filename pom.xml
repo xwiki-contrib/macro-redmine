@@ -36,7 +36,7 @@
 	<packaging>xar</packaging>
 
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
 	<scm>
