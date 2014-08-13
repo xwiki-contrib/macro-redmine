@@ -27,9 +27,8 @@
 	<parent>
 		<groupId>org.xwiki.commons</groupId>
 		<artifactId>xwiki-commons-pom</artifactId>
-		<version>6.1</version>
+		<version>6.1-rc-1</version>
 	</parent>
-
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xwiki.contrib</groupId>
@@ -37,7 +36,7 @@
 	<packaging>xar</packaging>
 
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
 	<scm>
@@ -56,7 +55,7 @@
 
 	<properties>
 		<!-- Don't run CLIRR here since there's no Java code. -->
-		<xar.verify.skip>true</xar.verify.skip>
+		<xwiki.clirr.skip>true</xwiki.clirr.skip>
 	</properties>
 
 	<build>
@@ -75,6 +74,12 @@
 				<artifactId>xwiki-commons-tool-xar-plugin</artifactId>
 				<version>${commons.version}</version>
 			</plugin>
+			<!-- Because of http://jira.codehaus.org/browse/MJAVADOC-329 we need to find a workaround to create a Javadoc
+               JAR to satisfy the Maven Central Repository requirements. We do this by creating an apidocs/ dir in the
+               target directory.
+               Note that even though this "hack" is only needed for java projects having all their sources in the
+               internal packages we put it here in the top level POM to not have to duplicate it at lots of places. -->
+
 		</plugins>
 	</build>
 
