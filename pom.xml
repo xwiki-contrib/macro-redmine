@@ -37,13 +37,13 @@
 	<packaging>xar</packaging>
 
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
 	<scm>
-		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
-		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
-		<url>https://github.com/xwiki-contrib/macro-redmine/</url>
+		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/tags/xwiki-macro-redmine-0.0.1</connection>
+		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/tags/xwiki-macro-redmine-0.0.1</developerConnection>
+		<url>https://github.com/xwiki-contrib/macro-redmine/tags/xwiki-macro-redmine-0.0.1</url>
 	</scm>
 
 	<developers>
