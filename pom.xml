@@ -36,7 +36,7 @@
 	<packaging>xar</packaging>
 
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
 	<scm>
@@ -92,22 +92,5 @@
 			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
-
- <!-- more infos on here: http://contrib.xwiki.org/xwiki/bin/view/Main/WebHome -->
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	
 </project>
