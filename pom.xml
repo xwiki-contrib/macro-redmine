@@ -35,39 +35,17 @@
 	<groupId>org.xwiki.contrib</groupId>
 	<artifactId>xwiki-macro-redmine</artifactId>
 	<packaging>xar</packaging>
+
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.6-SNAPSHOT</version>
-	<description>Lists Redmine issues on XWiki.</description>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
-
-	<properties>
-		<xwiki.clirr.previous.version>1.0</xwiki.clirr.previous.version>
-		<xar.verify.skip>true</xar.verify.skip>
-	</properties>
-
-	<build>
-		<extensions>
-			<!-- Needed to add support for the "xar" packaging -->
-			<!-- Not using the default version (4.0) because there is no way to disable XAR verify before 4.3. To be removed when upgrading. -->
-			<extension>
-				<groupId>org.xwiki.commons</groupId>
-				<artifactId>xwiki-commons-tool-xar-handlers</artifactId>
-				<version>3.5.1</version>
-			</extension>
-		</extensions>
-	</build>
 	<scm>
 		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
 		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
-		<url>https://github.com/xwiki-contrib/macro-redmine/trunk/</url>
+		<url>https://github.com/xwiki-contrib/macro-redmine/</url>
 	</scm>
-	<distributionManagement>
-		<repository>
-			<id>xwiki-staging</id>
-			<name>XWiki Staging Repository</name>
-			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
-		</repository>
-	</distributionManagement>
+
 	<developers>
 		<developer>
 			<id>4F2E4A2E</id>
@@ -75,4 +53,36 @@
 			<email>osoriojaques@gmail.com</email>
 		</developer>
 	</developers>
+
+	<properties>
+		<!-- Don't run CLIRR here since there's no Java code. -->
+		<xar.verify.skip>true</xar.verify.skip>
+	</properties>
+
+	<build>
+		<!-- Needed to add support for the XAR packaging -->
+		<extensions>
+			<extension>
+				<groupId>org.xwiki.commons</groupId>
+				<artifactId>xwiki-commons-tool-xar-handlers</artifactId>
+				<version>${commons.version}</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<!-- The XAR packaging uses the XAR plugin and thus we need to define what version to use -->
+			<plugin>
+				<groupId>org.xwiki.commons</groupId>
+				<artifactId>xwiki-commons-tool-xar-plugin</artifactId>
+				<version>${commons.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>xwiki-staging</id>
+			<name>XWiki Staging Repository</name>
+			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
 </project>
