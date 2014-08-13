@@ -36,7 +36,7 @@
 	<packaging>xar</packaging>
 
 	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
 
 	<scm>
@@ -57,7 +57,7 @@
 		<!-- Don't run CLIRR here since there's no Java code. -->
 		<xwiki.clirr.skip>true</xwiki.clirr.skip>
 		<!-- Skiping enforcer since nothing else seams to help: http://jira.xwiki.org/browse/XCOMMONS-553 -->
-		<enforcer.skip>true</enforcer.skip>
+		<xwiki.enforcer.skip>true</xwiki.enforcer.skip>
 	</properties>
 
 	<build>
