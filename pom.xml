@@ -23,47 +23,54 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
- 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-macro-redmine</artifactId>
-  <packaging>xar</packaging>
-  <name>XWiki Contrib - Macro Redmine</name>
-  <version>0.0.3-SNAPSHOT</version>
-  <description>Lists Redmine issues on XWiki.</description>
-  <properties>
-    <xwiki.clirr.previous.version>1.0</xwiki.clirr.previous.version>
-    <xar.verify.skip>true</xar.verify.skip>
-  </properties>
 
-  <build>
-    <extensions>
-      <!-- Needed to add support for the "xar" packaging -->
-      <!-- Not using the default version (4.0) because there is no way to disable XAR verify before 4.3. To be removed when upgrading. -->
-      <extension>
-        <groupId>org.xwiki.commons</groupId>
-        <artifactId>xwiki-commons-tool-xar-handlers</artifactId>
-        <version>3.5.1</version>
-      </extension>
-    </extensions>
-  </build>
- <scm>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.xwiki.contrib</groupId>
+	<artifactId>xwiki-macro-redmine</artifactId>
+	<packaging>xar</packaging>
+	<name>XWiki Contrib - Macro Redmine</name>
+	<version>0.0.3-SNAPSHOT</version>
+	<description>Lists Redmine issues on XWiki.</description>
+
+	<parent>
+		<groupId>org.xwiki.commons</groupId>
+		<artifactId>xwiki-commons-pom</artifactId>
+		<version>6.1</version>
+	</parent>
+
+	<properties>
+		<xwiki.clirr.previous.version>1.0</xwiki.clirr.previous.version>
+		<xar.verify.skip>true</xar.verify.skip>
+	</properties>
+
+	<build>
+		<extensions>
+			<!-- Needed to add support for the "xar" packaging -->
+			<!-- Not using the default version (4.0) because there is no way to disable XAR verify before 4.3. To be removed when upgrading. -->
+			<extension>
+				<groupId>org.xwiki.commons</groupId>
+				<artifactId>xwiki-commons-tool-xar-handlers</artifactId>
+				<version>3.5.1</version>
+			</extension>
+		</extensions>
+	</build>
+	<scm>
 		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
 		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
 		<url>https://github.com/xwiki-contrib/macro-redmine/trunk/</url>
 	</scm>
-  <distributionManagement>
-    <repository>
-      <id>xwiki-staging</id>
-      <name>XWiki Staging Repository</name>
-      <url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
-  <developers>
-    <developer>
-      <id>4F2E4A2E</id>
-      <name>O.J. Sousa Rodrigues</name>
-      <email>osoriojaques@gmail.com</email>
-    </developer>
-  </developers>
+	<distributionManagement>
+		<repository>
+			<id>xwiki-staging</id>
+			<name>XWiki Staging Repository</name>
+			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+	<developers>
+		<developer>
+			<id>4F2E4A2E</id>
+			<name>O.J. Sousa Rodrigues</name>
+			<email>osoriojaques@gmail.com</email>
+		</developer>
+	</developers>
 </project>
