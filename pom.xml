@@ -24,6 +24,13 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+	<parent>
+		<groupId>org.xwiki.commons</groupId>
+		<artifactId>xwiki-commons-pom</artifactId>
+		<version>6.1</version>
+	</parent>
+
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xwiki.contrib</groupId>
 	<artifactId>xwiki-macro-redmine</artifactId>
@@ -32,11 +39,6 @@
 	<version>0.0.5-SNAPSHOT</version>
 	<description>Lists Redmine issues on XWiki.</description>
 
-	<parent>
-		<groupId>org.xwiki.commons</groupId>
-		<artifactId>xwiki-commons-pom</artifactId>
-		<version>6.1</version>
-	</parent>
 
 	<properties>
 		<xwiki.clirr.previous.version>1.0</xwiki.clirr.previous.version>
