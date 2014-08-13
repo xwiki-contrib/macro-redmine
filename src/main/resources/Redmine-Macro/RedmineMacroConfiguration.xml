@@ -1,219 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc>
-<web>Redmine-Macro</web>
-<name>RedmineMacroConfiguration</name>
-<language></language>
-<defaultLanguage></defaultLanguage>
-<translation>0</translation>
-<parent>Redmine-Macro.WebHome</parent>
-<creator>xwiki:XWiki.Admin</creator>
-<author>xwiki:XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-<creationDate>1407392426000</creationDate>
-<date>1407418937000</date>
-<contentUpdateDate>1407400187000</contentUpdateDate>
-<version>1.1</version>
-<title>RedmineMacroConfiguration</title>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment></comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/2.1</syntaxId>
-<hidden>true</hidden>
-<object>
-<class>
-<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
-<customClass></customClass>
-<customMapping></customMapping>
-<defaultViewSheet></defaultViewSheet>
-<defaultEditSheet></defaultEditSheet>
-<defaultWeb></defaultWeb>
-<nameField></nameField>
-<validationScript></validationScript>
-<redmineUrl>
-<customDisplay></customDisplay>
-<disabled>0</disabled>
-<name>redmineUrl</name>
-<number>2</number>
-<picker>0</picker>
-<prettyName>Redmine-URL:</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</redmineUrl>
-<redmineUserApiKey>
-<customDisplay></customDisplay>
-<disabled>0</disabled>
-<name>redmineUserApiKey</name>
-<number>2</number>
-<picker>0</picker>
-<prettyName>API (user) access key</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</redmineUserApiKey>
-</class>
-<name>Redmine-Macro.RedmineMacroConfiguration</name>
-<number>0</number>
-<className>Redmine-Macro.RedmineMacroConfigurationClass</className>
-<guid>582ba272-b26d-4e2b-b5d5-7aaaa0bf3a91</guid>
-<property>
-<redmineUrl>https://ticket.example.com/issues</redmineUrl>
-</property>
-<property>
-<redmineUserApiKey></redmineUserApiKey>
-</property>
-</object>
-<object>
-<class>
-<name>XWiki.ConfigurableClass</name>
-<customClass></customClass>
-<customMapping></customMapping>
-<defaultViewSheet></defaultViewSheet>
-<defaultEditSheet></defaultEditSheet>
-<defaultWeb></defaultWeb>
-<nameField></nameField>
-<validationScript></validationScript>
-<codeToExecute>
-<disabled>0</disabled>
-<editor>---</editor>
-<name>codeToExecute</name>
-<number>7</number>
-<picker>0</picker>
-<prettyName>codeToExecute</prettyName>
-<rows>5</rows>
-<size>40</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-</codeToExecute>
-<configurationClass>
-<disabled>0</disabled>
-<name>configurationClass</name>
-<number>3</number>
-<picker>0</picker>
-<prettyName>configurationClass</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</configurationClass>
-<configureGlobally>
-<defaultValue></defaultValue>
-<disabled>0</disabled>
-<displayFormType>checkbox</displayFormType>
-<displayType></displayType>
-<name>configureGlobally</name>
-<number>4</number>
-<prettyName>configureGlobally</prettyName>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
-</configureGlobally>
-<displayInSection>
-<disabled>0</disabled>
-<name>displayInSection</name>
-<number>1</number>
-<picker>0</picker>
-<prettyName>displayInSection</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</displayInSection>
-<heading>
-<disabled>0</disabled>
-<name>heading</name>
-<number>2</number>
-<picker>0</picker>
-<prettyName>heading</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</heading>
-<iconAttachment>
-<disabled>0</disabled>
-<name>iconAttachment</name>
-<number>8</number>
-<picker>0</picker>
-<prettyName>iconAttachment</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</iconAttachment>
-<linkPrefix>
-<disabled>0</disabled>
-<name>linkPrefix</name>
-<number>5</number>
-<picker>0</picker>
-<prettyName>linkPrefix</prettyName>
-<size>30</size>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-</linkPrefix>
-<propertiesToShow>
-<cache>0</cache>
-<disabled>0</disabled>
-<displayType>input</displayType>
-<multiSelect>1</multiSelect>
-<name>propertiesToShow</name>
-<number>6</number>
-<picker>0</picker>
-<prettyName>propertiesToShow</prettyName>
-<relationalStorage>1</relationalStorage>
-<separator> </separator>
-<separators> ,|</separators>
-<size>20</size>
-<sort>none</sort>
-<unmodifiable>0</unmodifiable>
-<validationMessage></validationMessage>
-<validationRegExp></validationRegExp>
-<values></values>
-<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-</propertiesToShow>
-</class>
-<name>Redmine-Macro.RedmineMacroConfiguration</name>
-<number>0</number>
-<className>XWiki.ConfigurableClass</className>
-<guid>f573c68f-a47e-4ba4-962f-43a8acc257e4</guid>
-<property>
-<codeToExecute></codeToExecute>
-</property>
-<property>
-<configurationClass>Redmine-Macro.RedmineMacroConfigurationClass</configurationClass>
-</property>
-<property>
-<configureGlobally>1</configureGlobally>
-</property>
-<property>
-<displayInSection>Redmine-Macro</displayInSection>
-</property>
-<property>
-<heading>Redmine-Macro Configuration</heading>
-</property>
-<property>
-<iconAttachment></iconAttachment>
-</property>
-<property>
-<linkPrefix></linkPrefix>
-</property>
-<property>
-<propertiesToShow/>
-</property>
-</object>
-<content></content></xwikidoc>
+	<web>Redmine-Macro</web>
+	<name>RedmineMacroConfiguration</name>
+	<language/>
+	<defaultLanguage/>
+	<translation>0</translation>
+	<parent>Redmine-Macro.WebHome</parent>
+	<creator>xwiki:XWiki.Admin</creator>
+	<author>xwiki:XWiki.Admin</author>
+	<customClass/>
+	<contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+	<creationDate>1407392426000</creationDate>
+	<date>1407418937000</date>
+	<contentUpdateDate>1407400187000</contentUpdateDate>
+	<version>1.1</version>
+	<title>RedmineMacroConfiguration</title>
+	<defaultTemplate/>
+	<validationScript/>
+	<comment/>
+	<minorEdit>false</minorEdit>
+	<syntaxId>xwiki/2.1</syntaxId>
+	<hidden>true</hidden>
+	<object>
+		<class>
+			<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
+			<customClass/>
+			<customMapping/>
+			<defaultViewSheet/>
+			<defaultEditSheet/>
+			<defaultWeb/>
+			<nameField/>
+			<validationScript/>
+			<redmineUrl>
+				<customDisplay/>
+				<disabled>0</disabled>
+				<name>redmineUrl</name>
+				<number>2</number>
+				<picker>0</picker>
+				<prettyName>Redmine-URL:</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</redmineUrl>
+			<redmineUserApiKey>
+				<customDisplay/>
+				<disabled>0</disabled>
+				<name>redmineUserApiKey</name>
+				<number>2</number>
+				<picker>0</picker>
+				<prettyName>API (user) access key</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</redmineUserApiKey>
+		</class>
+		<name>Redmine-Macro.RedmineMacroConfiguration</name>
+		<number>0</number>
+		<className>Redmine-Macro.RedmineMacroConfigurationClass</className>
+		<guid>582ba272-b26d-4e2b-b5d5-7aaaa0bf3a91</guid>
+		<property>
+			<redmineUrl>https://ticket.example.com/issues</redmineUrl>
+		</property>
+		<property>
+			<redmineUserApiKey/>
+		</property>
+	</object>
+	<object>
+		<class>
+			<name>XWiki.ConfigurableClass</name>
+			<customClass/>
+			<customMapping/>
+			<defaultViewSheet/>
+			<defaultEditSheet/>
+			<defaultWeb/>
+			<nameField/>
+			<validationScript/>
+			<codeToExecute>
+				<disabled>0</disabled>
+				<editor>---</editor>
+				<name>codeToExecute</name>
+				<number>7</number>
+				<picker>0</picker>
+				<prettyName>codeToExecute</prettyName>
+				<rows>5</rows>
+				<size>40</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+			</codeToExecute>
+			<configurationClass>
+				<disabled>0</disabled>
+				<name>configurationClass</name>
+				<number>3</number>
+				<picker>0</picker>
+				<prettyName>configurationClass</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</configurationClass>
+			<configureGlobally>
+				<defaultValue/>
+				<disabled>0</disabled>
+				<displayFormType>checkbox</displayFormType>
+				<displayType/>
+				<name>configureGlobally</name>
+				<number>4</number>
+				<prettyName>configureGlobally</prettyName>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+			</configureGlobally>
+			<displayInSection>
+				<disabled>0</disabled>
+				<name>displayInSection</name>
+				<number>1</number>
+				<picker>0</picker>
+				<prettyName>displayInSection</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</displayInSection>
+			<heading>
+				<disabled>0</disabled>
+				<name>heading</name>
+				<number>2</number>
+				<picker>0</picker>
+				<prettyName>heading</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</heading>
+			<iconAttachment>
+				<disabled>0</disabled>
+				<name>iconAttachment</name>
+				<number>8</number>
+				<picker>0</picker>
+				<prettyName>iconAttachment</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</iconAttachment>
+			<linkPrefix>
+				<disabled>0</disabled>
+				<name>linkPrefix</name>
+				<number>5</number>
+				<picker>0</picker>
+				<prettyName>linkPrefix</prettyName>
+				<size>30</size>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+			</linkPrefix>
+			<propertiesToShow>
+				<cache>0</cache>
+				<disabled>0</disabled>
+				<displayType>input</displayType>
+				<multiSelect>1</multiSelect>
+				<name>propertiesToShow</name>
+				<number>6</number>
+				<picker>0</picker>
+				<prettyName>propertiesToShow</prettyName>
+				<relationalStorage>1</relationalStorage>
+				<separator/>
+				<separators> ,|</separators>
+				<size>20</size>
+				<sort>none</sort>
+				<unmodifiable>0</unmodifiable>
+				<validationMessage/>
+				<validationRegExp/>
+				<values/>
+				<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+			</propertiesToShow>
+		</class>
+		<name>Redmine-Macro.RedmineMacroConfiguration</name>
+		<number>0</number>
+		<className>XWiki.ConfigurableClass</className>
+		<guid>f573c68f-a47e-4ba4-962f-43a8acc257e4</guid>
+		<property>
+			<codeToExecute/>
+		</property>
+		<property>
+			<configurationClass>Redmine-Macro.RedmineMacroConfigurationClass</configurationClass>
+		</property>
+		<property>
+			<configureGlobally>1</configureGlobally>
+		</property>
+		<property>
+			<displayInSection>Redmine-Macro</displayInSection>
+		</property>
+		<property>
+			<heading>Redmine-Macro Configuration</heading>
+		</property>
+		<property>
+			<iconAttachment/>
+		</property>
+		<property>
+			<linkPrefix/>
+		</property>
+		<property>
+			<propertiesToShow/>
+		</property>
+	</object>
+	<content/>
+</xwikidoc>
