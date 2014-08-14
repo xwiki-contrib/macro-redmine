@@ -76,12 +76,20 @@
 				<artifactId>xwiki-commons-tool-xar-plugin</artifactId>
 				<version>${commons.version}</version>
 			</plugin>
-			<!-- Because of http://jira.codehaus.org/browse/MJAVADOC-329 we need to find a workaround to create a Javadoc
-               JAR to satisfy the Maven Central Repository requirements. We do this by creating an apidocs/ dir in the
-               target directory.
-               Note that even though this "hack" is only needed for java projects having all their sources in the
-               internal packages we put it here in the top level POM to not have to duplicate it at lots of places. -->
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -92,5 +100,5 @@
 			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
-	
+
 </project>
