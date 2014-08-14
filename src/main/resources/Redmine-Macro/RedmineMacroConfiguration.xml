@@ -84,7 +84,7 @@
 		<className>Redmine-Macro.RedmineMacroConfigurationClass</className>
 		<guid>582ba272-b26d-4e2b-b5d5-7aaaa0bf3a91</guid>
 		<property>
-			<redmineUrl>http://www.redmine.org/issues</redmineUrl>
+			<redmineUrl>http://www.redmine.org</redmineUrl>
 		</property>
 		<property>
 			<redmineUserApiKey/>
