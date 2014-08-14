@@ -166,18 +166,12 @@ $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
 
 import groovy.json.*
 
-
 def customObject = xwiki.getDocument("Redmine-Macro.RedmineMacroConfiguration").getObject("Redmine-Macro.RedmineMacroConfigurationClass")
 
-def ticketRedmine = customObject.getProperty("redmineUrl").value
-def redmineKeyValue = customObject.getProperty("redmineUserApiKey").value
+def redmineKeyValue = "key=".concat(customObject.getProperty("redmineUserApiKey").value)
+def defaultUrl = customObject.getProperty("redmineUrl").value
 
-def redmineKeyParam = "key"
-def redmineKey = redmineKeyParam + "=" + redmineKeyValue 
-
-def redmineKeyValueMsg = "&lt;redmineApiUserKey&gt;"
-
-def defaultUrl = ""
+def redmineUrl = defaultUrl.concat("/issues/issueNumber.json").concat("?").concat(redmineKeyValue)
 def url = ""
 def root = null
 def issuesList = "$xcontext.macro.params.issues".replaceAll(" ", "")
@@ -188,24 +182,25 @@ println "|= ID |= Tracker |= Status |= Thema "
 
 try {
 
-for (issueNumber in issuesList) {
-  defaultUrl = ticketRedmine + "/" + issueNumber + ".json"
-  url = defaultUrl + "?" + redmineKey
+	for (issueNumber in issuesList) {
 
-  try{
-    root = new JsonSlurper().parseText(url.toURL().text)
-    println "| [[#${root.issue.id}&gt;&gt;url:$ticketRedmine/${root.issue.id}|]] | {{{ ${root.issue.tracker.name} }}} | {{{ ${root.issue.status.name} }}} | {{{ ${root.issue.subject} }}}"
+		url = redmineUrl.replace("issueNumber", issueNumber)
 
-  } catch( FileNotFoundException e ) {
-    println "| {{{ $issueNumber }}} | {{{ - }}} | {{{ - }}} | {{{ - }}}"
-  }
-}
+		try{
+			root = new JsonSlurper().parseText(url.toURL().text)
+			if("5".equalsIgnoreCase("${root.issue.status.id}")) {
+				println "| --[[#${root.issue.id}&gt;&gt;url:$defaultUrl/issues/${root.issue.id}]]-- | --{{{ ${root.issue.tracker.name} }}}-- | --{{{ ${root.issue.status.name} }}}-- | --{{{ ${root.issue.subject} }}}--"
+			}else {
+				println "| [[#${root.issue.id}&gt;&gt;url:$defaultUrl/issues/${root.issue.id}]] | {{{ ${root.issue.tracker.name} }}} | {{{ ${root.issue.status.name} }}} | {{{ ${root.issue.subject} }}}"
+			}
 
-
+		} catch( FileNotFoundException e ) {
+			println "| {{{ $issueNumber }}} | {{{ - }}} | {{{ - }}} | {{{ - }}}"
+		}
+	}
 } catch( Exception e ) {
-  println "\nSomething went wrong. Please contact the developer."
-  def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
-  println "{{error}} {{{ $exceptionMsg }}} {{/error}}"
+	println "Something went wrong. Please contact the developer."
+	println "{{error}} {{{ $e }}} {{/error}}"
 }
 
 {{/groovy}}</code>

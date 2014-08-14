@@ -169,43 +169,38 @@ import groovy.json.*
 
 def customObject = xwiki.getDocument("Redmine-Macro.RedmineMacroConfiguration").getObject("Redmine-Macro.RedmineMacroConfigurationClass")
 
-def ticketRedmine = customObject.getProperty("redmineUrl").value
-def redmineKeyValue = customObject.getProperty("redmineUserApiKey").value
-
-def redmineKeyParam = "key"
-def redmineKey = redmineKeyParam + "=" + redmineKeyValue 
-
-def redmineKeyValueMsg = "&lt;redmineApiUserKey&gt;"
+def redmineKey = "key=".concat(customObject.getProperty("redmineUserApiKey").value)
+def defaultUrl = customObject.getProperty("redmineUrl").value
 
 try {
 
-def defaultUrl = "$xcontext.macro.params.url"
-defaultUrl = "$defaultUrl".replaceAll('issues', 'issues.json')
+	def paramUrl = "$xcontext.macro.params.url".replaceAll('issues', 'issues.json')
 
-def url = ""
-if(defaultUrl.contains("?")){
-  url = defaultUrl + "&amp;" + redmineKey
-}else{
-  url = defaultUrl + "?" + redmineKey
-}
+	def url = ""
+	if(paramUrl.contains("?")){
+		url = paramUrl + "&amp;" + redmineKey
+	}else{
+		url = paramUrl + "?" + redmineKey
+	}
 
-def root = new JsonSlurper().parseText(url.toURL().text)
+	def root = new JsonSlurper().parseText(url.toURL().text)
 
-println "(% class=\"sortable filterable doOddEven\" id=\"ticketListRedmine\" %)"
-print "(% class=\"sortHeader\" %)"
-println "|= ID |= Tracker |= Status |= Thema "
+	println "(% class=\"sortable filterable doOddEven\" id=\"ticketListRedmine\" %)"
+	print "(% class=\"sortHeader\" %)"
+	println "|= ID |= Tracker |= Status |= Thema "
 
-root.issues.each() { issue -&gt;
-  println "| [[#${issue.id}&gt;&gt;url:$ticketRedmine/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
-}
+	root.issues.each() { issue -&gt;
+		if("5".equalsIgnoreCase("${issue.status.id}")) {
+			println "| --[[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"
+		}else {
+			println "| [[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
+		}
+	}
 
 } catch( Exception e ){
-  println "Something went wrong. Please contact the developer."
-  def exceptionMsg = "$e".replaceAll(redmineKeyValue, redmineKeyValueMsg)
-  println "{{error}} {{{ $exceptionMsg }}} {{/error}}"
+	println "Something went wrong. Please contact the developer."
+	println "{{error}} {{{ $e }}} {{/error}}"
 }
-
-
 
 {{/groovy}}</code>
 		</property>
@@ -288,10 +283,10 @@ root.issues.each() { issue -&gt;
 		<className>XWiki.WikiMacroParameterClass</className>
 		<guid>4489be66-9f68-4172-88d7-eaffa9153584</guid>
 		<property>
-			<defaultValue>https://ticket.example.com/issues</defaultValue>
+			<defaultValue>http://www.redmine.org/issues</defaultValue>
 		</property>
 		<property>
-			<description>Fügen Sie die Redmine-URl ein.</description>
+			<description>Please add your Redmine query or filter URL.</description>
 		</property>
 		<property>
 			<mandatory>1</mandatory>
