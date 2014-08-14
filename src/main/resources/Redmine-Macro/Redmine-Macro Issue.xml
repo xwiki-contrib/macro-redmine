@@ -166,7 +166,13 @@ $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
 
 import groovy.json.*
 
-def customObject = xwiki.getDocument("Redmine-Macro.RedmineMacroConfiguration").getObject("Redmine-Macro.RedmineMacroConfigurationClass")
+def wikiname = doc.getDocument().getWikiName()
+def customObject = xwiki.getDocument("$wikiname:Redmine-Macro.RedmineMacroConfiguration").getObject("$wikiname:Redmine-Macro.RedmineMacroConfigurationClass")
+
+if(null == customObject){
+  wikiname = "xwiki"
+  customObject = xwiki.getDocument("$wikiname:Redmine-Macro.RedmineMacroConfiguration").getObject("$wikiname:Redmine-Macro.RedmineMacroConfigurationClass")
+}
 
 def redmineKeyValue = "key=".concat(customObject.getProperty("redmineUserApiKey").value)
 def defaultUrl = customObject.getProperty("redmineUrl").value
