@@ -37,7 +37,7 @@
 
 	<name>XWiki Contrib - Macro Redmine</name>
 	<version>0.0.3-SNAPSHOT</version>
-	<description>Lists Redmine issues on XWiki. Visit http://extensions.xwiki.org/xwiki/bin/view/Extension/Redmine+Macro for more information.</description>
+	<description>Lists Redmine issues on XWiki.</description>
 
 	<scm>
 		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
