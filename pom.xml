@@ -22,83 +22,86 @@
  *
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<parent>
-		<groupId>org.xwiki.commons</groupId>
-		<artifactId>xwiki-commons-pom</artifactId>
-		<version>6.1-rc-1</version>
-	</parent>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.xwiki.commons</groupId>
+    <artifactId>xwiki-commons-pom</artifactId>
+    <version>6.1</version>
+  </parent>
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.xwiki.contrib</groupId>
-	<artifactId>xwiki-macro-redmine</artifactId>
-	<packaging>xar</packaging>
+  <groupId>org.xwiki.contrib</groupId>
+  <artifactId>macro-redmine</artifactId>
+  <packaging>xar</packaging>
 
-	<name>XWiki Contrib - Macro Redmine</name>
-	<version>0.0.6-SNAPSHOT</version>
-	<description>Lists Redmine issues on XWiki.</description>
+  <name>Redmine Macro</name>
+  <version>0.0.6-SNAPSHOT</version>
+  <description>Displays Redmine issues</description>
 
-	<scm>
-		<connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
-		<developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
-		<url>https://github.com/xwiki-contrib/macro-redmine/</url>
-	</scm>
+  <scm>
+    <connection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</connection>
+    <developerConnection>scm:svn:https://github.com/xwiki-contrib/macro-redmine/trunk/</developerConnection>
+    <url>https://github.com/xwiki-contrib/macro-redmine/</url>
+  </scm>
 
-	<developers>
-		<developer>
-			<id>4F2E4A2E</id>
-			<name>O.J. Sousa Rodrigues</name>
-			<email>osoriojaques@gmail.com</email>
-		</developer>
-	</developers>
+  <developers>
+    <developer>
+      <id>4F2E4A2E</id>
+      <name>O.J. Sousa Rodrigues</name>
+      <email>osoriojaques@gmail.com</email>
+    </developer>
+  </developers>
 
-	<properties>
-		<!-- Don't run CLIRR here since there's no Java code. -->
-		<xwiki.clirr.skip>true</xwiki.clirr.skip>
-		<!-- Skiping enforcer since nothing else seams to help: http://jira.xwiki.org/browse/XCOMMONS-553 -->
-		<xwiki.enforcer.skip>true</xwiki.enforcer.skip>
-	</properties>
+  <properties>
+    <!-- Don't run CLIRR here since there's no Java code. -->
+    <xwiki.clirr.skip>true</xwiki.clirr.skip>
+    <!-- Skiping enforcer since nothing else seems to help: http://jira.xwiki.org/browse/XCOMMONS-553 -->
+    <xwiki.enforcer.skip>true</xwiki.enforcer.skip>
+    <!-- Old names of this module used for retro compatibility when resolving dependencies of old extensions -->
+    <xwiki.extension.features>org.xwiki.contrib:xwiki-macro-redmine</xwiki.extension.features>
+  </properties>
 
-	<build>
-		<!-- Needed to add support for the XAR packaging -->
-		<extensions>
-			<extension>
-				<groupId>org.xwiki.commons</groupId>
-				<artifactId>xwiki-commons-tool-xar-handlers</artifactId>
-				<version>${commons.version}</version>
-			</extension>
-		</extensions>
-		<plugins>
-			<!-- The XAR packaging uses the XAR plugin and thus we need to define what version to use -->
-			<plugin>
-				<groupId>org.xwiki.commons</groupId>
-				<artifactId>xwiki-commons-tool-xar-plugin</artifactId>
-				<version>${commons.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+  <build>
+    <!-- Needed to add support for the XAR packaging -->
+    <extensions>
+      <extension>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-tool-xar-handlers</artifactId>
+        <version>${commons.version}</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <!-- The XAR packaging uses the XAR plugin and thus we need to define what version to use -->
+      <plugin>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-tool-xar-plugin</artifactId>
+        <version>${commons.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
-	<distributionManagement>
-		<repository>
-			<id>xwiki-staging</id>
-			<name>XWiki Staging Repository</name>
-			<url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
-		</repository>
-	</distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>xwiki-staging</id>
+      <name>XWiki Staging Repository</name>
+      <url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
 
 </project>
