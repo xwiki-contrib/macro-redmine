@@ -21,12 +21,12 @@
 -->
 
 <xwikidoc>
-	<web>Redmine-Macro</web>
+	<web>RedmineMacro</web>
 	<name>RedmineMacroConfigurationClass</name>
 	<language/>
 	<defaultLanguage/>
 	<translation>0</translation>
-	<parent>Redmine-Macro.WebHome</parent>
+	<parent>RedmineMacro.WebHome</parent>
 	<creator>xwiki:XWiki.Admin</creator>
 	<author>xwiki:XWiki.Admin</author>
 	<customClass/>
@@ -43,7 +43,7 @@
 	<syntaxId>xwiki/2.0</syntaxId>
 	<hidden>true</hidden>
 	<class>
-		<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
+		<name>RedmineMacro.RedmineMacroConfigurationClass</name>
 		<customClass/>
 		<customMapping/>
 		<defaultViewSheet/>
@@ -102,7 +102,7 @@
 				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 			</sheet>
 		</class>
-		<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
+		<name>RedmineMacro.RedmineMacroConfigurationClass</name>
 		<number>0</number>
 		<className>XWiki.ClassSheetBinding</className>
 		<guid>5154f654-791c-40ba-8bdf-aabb16b06d69</guid>
@@ -134,7 +134,7 @@
 				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 			</sheet>
 		</class>
-		<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
+		<name>RedmineMacro.RedmineMacroConfigurationClass</name>
 		<number>0</number>
 		<className>XWiki.DocumentSheetBinding</className>
 		<guid>17cf747a-c217-4c01-a08a-51dc279d4c17</guid>

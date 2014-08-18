@@ -21,12 +21,12 @@
 -->
 
 <xwikidoc>
-	<web>Redmine-Macro</web>
+	<web>RedmineMacro</web>
 	<name>RedmineMacroConfigurationTemplate</name>
 	<language/>
 	<defaultLanguage/>
 	<translation>0</translation>
-	<parent>Redmine-Macro.RedmineMacroConfigurationClass</parent>
+	<parent>RedmineMacro.RedmineMacroConfigurationClass</parent>
 	<creator>xwiki:XWiki.Admin</creator>
 	<author>xwiki:XWiki.Admin</author>
 	<customClass/>
@@ -44,7 +44,7 @@
 	<hidden>true</hidden>
 	<object>
 		<class>
-			<name>Redmine-Macro.RedmineMacroConfigurationClass</name>
+			<name>RedmineMacro.RedmineMacroConfigurationClass</name>
 			<customClass/>
 			<customMapping/>
 			<defaultViewSheet/>
@@ -79,9 +79,9 @@
 				<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 			</redmineUserApiKey>
 		</class>
-		<name>Redmine-Macro.RedmineMacroConfigurationTemplate</name>
+		<name>RedmineMacro.RedmineMacroConfigurationTemplate</name>
 		<number>0</number>
-		<className>Redmine-Macro.RedmineMacroConfigurationClass</className>
+		<className>RedmineMacro.RedmineMacroConfigurationClass</className>
 		<guid>acdf6331-5193-47ef-b541-b672d1ef971c</guid>
 	</object>
 	<content/>

@@ -21,7 +21,7 @@
 -->
 
 <xwikidoc>
-	<web>Redmine-Macro</web>
+	<web>RedmineMacro</web>
 	<name>WebHome</name>
 	<language/>
 	<defaultLanguage/>
@@ -35,7 +35,7 @@
 	<date>1407392232000</date>
 	<contentUpdateDate>1407392232000</contentUpdateDate>
 	<version>1.1</version>
-	<title>Redmine-Macro</title>
+	<title>Redmine Macro</title>
 	<defaultTemplate/>
 	<validationScript/>
 	<comment/>

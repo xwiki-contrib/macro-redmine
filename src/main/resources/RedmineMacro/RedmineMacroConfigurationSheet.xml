@@ -21,12 +21,12 @@
 -->
 
 <xwikidoc>
-	<web>Redmine-Macro</web>
+	<web>RedmineMacro</web>
 	<name>RedmineMacroConfigurationSheet</name>
 	<language/>
 	<defaultLanguage/>
 	<translation>0</translation>
-	<parent>Redmine-Macro.RedmineMacroConfigurationClass</parent>
+	<parent>RedmineMacro.RedmineMacroConfigurationClass</parent>
 	<creator>xwiki:XWiki.Admin</creator>
 	<author>xwiki:XWiki.Admin</author>
 	<customClass/>
@@ -46,7 +46,7 @@
 ## You can modify this page to customize the presentation of your object.
 ## At first you should keep the default presentation and just save the document.
 
-#set($class = $doc.getObject('Redmine-Macro.RedmineMacroConfigurationClass').xWikiClass)
+#set($class = $doc.getObject('RedmineMacro.RedmineMacroConfigurationClass').xWikiClass)
 #foreach($prop in $class.properties)
   ; $prop.prettyName
   : $doc.display($prop.getName())
