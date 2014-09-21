@@ -214,11 +214,9 @@
         println tableHeader&#xd;
         for(issue in issueList) {&#xd;
         if(closedStatusValue.equalsIgnoreCase("${issue.status.id}")) {&#xd;
-        println "| --[[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{
-        ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"&#xd;
+        println "| --[[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"&#xd;
         }else {&#xd;
-        println "| [[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name}
-        }}} | {{{ ${issue.subject} }}}"&#xd;
+        println "| [[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"&#xd;
         }&#xd;
         }&#xd;
         } catch( Exception e ){&#xd;
