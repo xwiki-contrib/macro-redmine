@@ -23,35 +23,35 @@
 <xwikidoc>
   <web>RedmineMacro</web>
   <name>Redmine Macro</name>
-  <language />
-  <defaultLanguage />
+  <language/>
+  <defaultLanguage/>
   <translation>0</translation>
   <parent>RedmineMacro.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
   <author>xwiki:XWiki.Admin</author>
-  <customClass />
+  <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1407393454000</creationDate>
   <date>1407412781000</date>
   <contentUpdateDate>1404393672000</contentUpdateDate>
   <version>1.1</version>
-  <title />
-  <defaultTemplate />
-  <validationScript />
-  <comment />
+  <title/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
   <object>
     <class>
       <name>XWiki.WikiMacroClass</name>
-      <customClass />
-      <customMapping />
-      <defaultViewSheet />
-      <defaultEditSheet />
-      <defaultWeb />
-      <nameField />
-      <validationScript />
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
       <code>
         <disabled>0</disabled>
         <name>code</name>
@@ -157,85 +157,85 @@
     <className>XWiki.WikiMacroClass</className>
     <guid>be484754-247b-45b6-8c75-6ee13206380e</guid>
     <property>
-      <code>{{velocity}}&#xd;
-        $xwiki.ssfx.use("js/xwiki/table/table.css")&#xd;
-        $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)&#xd;
-        {{/velocity}}&#xd;
-        &#xd;
-        {{groovy}}&#xd;
-        &#xd;
-        import groovy.json.*&#xd;
-        &#xd;
-        &#xd;
-        &#xd;
-        def wikiname = doc.getDocument().getWikiName()&#xd;
+      <code>{{velocity}}
+        $xwiki.ssfx.use("js/xwiki/table/table.css")
+        $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
+        {{/velocity}}
+        
+        {{groovy}}
+        
+        import groovy.json.*
+        
+        
+        
+        def wikiname = doc.getDocument().getWikiName()
         def customObject =
-        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")&#xd;
-        &#xd;
-        if(null == customObject){&#xd;
-        wikiname = "xwiki"&#xd;
-        customObject =&#xd;
-        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")&#xd;
-        }&#xd;
-        &#xd;
-        &#xd;
-        def defaultUrl = customObject.getProperty("redmineUrl").value&#xd;
+        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")
+        
+        if(null == customObject){
+        wikiname = "xwiki"
+        customObject =
+        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")
+        }
+        
+        
+        def defaultUrl = customObject.getProperty("redmineUrl").value
         def redmineKey =
-        "key=".concat(customObject.getProperty("redmineUserApiKey").value)&#xd;
+        "key=".concat(customObject.getProperty("redmineUserApiKey").value)
         def params =
-        "$xcontext.macro.params.params".replaceAll('issues', 'issues.json')&#xd;
-        &#xd;
-        def closedStatusValue = "5"&#xd;
-        def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro\" %)"&#xd;
+        "$xcontext.macro.params.params".replaceAll('issues', 'issues.json')
+        
+        def closedStatusValue = "5"
+        def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro\" %)"
         def tableHeader =
-        "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "&#xd;
-        def issueUrls = [] as ArrayList&#xd;
+        "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "
+        def issueUrls = [] as ArrayList
         def
-        issueList = [] as ArrayList&#xd;
-        &#xd;
-        &#xd;
-        try {&#xd;
-        &#xd;
-        if(params.contains("?") &amp;&amp; params.contains("http")){&#xd;
-        redmineQuery = params.concat("&amp;").concat(redmineKey)&#xd;
-        def root = new JsonSlurper().parseText(redmineQuery.toURL().text)&#xd;
-        root.issues.each() { issue -> issueList.add(issue) }&#xd;
-        println tableSortableCfg&#xd;
-        }else{&#xd;
-        params = params.replaceAll(" ", "")&#xd;
-        for(issueNumber in params.split(",")) {&#xd;
-        def issueUrl = defaultUrl.concat("/issues/".concat(issueNumber).concat(".json").concat("?").concat(redmineKey))&#xd;
-        def root = new JsonSlurper().parseText(issueUrl.toURL().text)&#xd;
-        issueList.add(root.issue)&#xd;
-        }&#xd;
-        }&#xd;
-        &#xd;
-        &#xd;
-        println tableHeader&#xd;
-        for(issue in issueList) {&#xd;
-        if(closedStatusValue.equalsIgnoreCase("${issue.status.id}")) {&#xd;
-        println "| --[[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"&#xd;
-        }else {&#xd;
-        println "| [[#${issue.id}>>url:$defaultUrl/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"&#xd;
-        }&#xd;
-        }&#xd;
-        } catch( Exception e ){&#xd;
-        println "Something went wrong. Please contact the developer."&#xd;
-        println "{{error}} {{{ $e }}} {{/error}}"&#xd;
-        }&#xd;
-        &#xd;
-        &#xd;
+        issueList = [] as ArrayList
+        
+        
+        try {
+        
+        if(params.contains("?") &amp;&amp; params.contains("http")){
+        redmineQuery = params.concat("&amp;").concat(redmineKey)
+        def root = new JsonSlurper().parseText(redmineQuery.toURL().text)
+        root.issues.each() { issue -&gt; issueList.add(issue) }
+        println tableSortableCfg
+        }else{
+        params = params.replaceAll(" ", "")
+        for(issueNumber in params.split(",")) {
+        def issueUrl = defaultUrl.concat("/issues/".concat(issueNumber).concat(".json").concat("?").concat(redmineKey))
+        def root = new JsonSlurper().parseText(issueUrl.toURL().text)
+        issueList.add(root.issue)
+        }
+        }
+        
+        
+        println tableHeader
+        for(issue in issueList) {
+        if(closedStatusValue.equalsIgnoreCase("${issue.status.id}")) {
+        println "| --[[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"
+        }else {
+        println "| [[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
+        }
+        }
+        } catch( Exception e ){
+        println "Something went wrong. Please contact the developer."
+        println "{{error}} {{{ $e }}} {{/error}}"
+        }
+        
+        
         {{/groovy}}
       </code>
     </property>
     <property>
-      <contentDescription />
+      <contentDescription/>
     </property>
     <property>
       <contentType>No content</contentType>
     </property>
     <property>
-      <defaultCategory />
+      <defaultCategory/>
     </property>
     <property>
       <description>Listet Tickets vom Redmine Ticketsystem in einer Tabelle auf.</description>
@@ -256,13 +256,13 @@
   <object>
     <class>
       <name>XWiki.WikiMacroParameterClass</name>
-      <customClass />
-      <customMapping />
-      <defaultViewSheet />
-      <defaultEditSheet />
-      <defaultWeb />
-      <nameField />
-      <validationScript />
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
       <defaultValue>
         <disabled>0</disabled>
         <name>defaultValue</name>
@@ -319,5 +319,5 @@
       <name>params</name>
     </property>
   </object>
-  <content />
+  <content/>
 </xwikidoc>
