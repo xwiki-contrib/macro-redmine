@@ -157,75 +157,81 @@
     <className>XWiki.WikiMacroClass</className>
     <guid>be484754-247b-45b6-8c75-6ee13206380e</guid>
     <property>
-      <code>{{velocity}}
-        $xwiki.ssfx.use("js/xwiki/table/table.css")
+      <code>
+	  {{velocity}}        $xwiki.ssfx.use("js/xwiki/table/table.css")
         $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
         {{/velocity}}
-        
-        {{groovy}}
-        
-        import groovy.json.*
-        
-        
-        
-        def wikiname = doc.getDocument().getWikiName()
-        def customObject =
-        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")
-        
-        if(null == customObject){
-        wikiname = "xwiki"
-        customObject =
-        xwiki.getDocument("$wikiname:RedmineMacro.RedmineMacroConfiguration").getObject("$wikiname:RedmineMacro.RedmineMacroConfigurationClass")
-        }
-        
-        
-        def defaultUrl = customObject.getProperty("redmineUrl").value
-        def redmineKey =
-        "key=".concat(customObject.getProperty("redmineUserApiKey").value)
-        def params =
-        "$xcontext.macro.params.params".replaceAll('issues', 'issues.json')
-        
-        def closedStatusValue = "5"
-        def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro\" %)"
-        def tableHeader =
-        "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "
-        def issueUrls = [] as ArrayList
-        def
-        issueList = [] as ArrayList
-        
-        
-        try {
-        
-        if(params.contains("?") &amp;&amp; params.contains("http")){
-        redmineQuery = params.concat("&amp;").concat(redmineKey)
-        def root = new JsonSlurper().parseText(redmineQuery.toURL().text)
-        root.issues.each() { issue -&gt; issueList.add(issue) }
-        println tableSortableCfg
-        }else{
-        params = params.replaceAll(" ", "")
-        for(issueNumber in params.split(",")) {
-        def issueUrl = defaultUrl.concat("/issues/".concat(issueNumber).concat(".json").concat("?").concat(redmineKey))
-        def root = new JsonSlurper().parseText(issueUrl.toURL().text)
-        issueList.add(root.issue)
-        }
-        }
-        
-        
-        println tableHeader
-        for(issue in issueList) {
-        if(closedStatusValue.equalsIgnoreCase("${issue.status.id}")) {
-        println "| --[[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"
-        }else {
-        println "| [[#${issue.id}&gt;&gt;url:$defaultUrl/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
-        }
-        }
-        } catch( Exception e ){
-        println "Something went wrong. Please contact the developer."
-        println "{{error}} {{{ $e }}} {{/error}}"
-        }
-        
-        
-        {{/groovy}}
+ jh{{groovy}}import groovy.json.*
+  /**
+  * Creating random id
+  */
+ def random = new Random()
+ def randomInt = random.nextInt(200-100+1)+100
+
+ /**
+  * Redmine Macro information.
+  */
+ def REDMINE_XWIKI_NAME = "xwiki"
+ def REDMINE_CUSTOM_OBJECT = ""
+ def REDMINE_AUTH_KEY = ""
+ def REDMINE_DEFAULT_URL = "http://redmine.org"
+ def REDMINE_MACRO_PARAMS = "http://www.redmine.org/projects/redmine/issues.json?query_id=1"
+ def REDMINE_CLOSE_STATUS_VALUE = "5"
+ def REDMINE_QUERY = ""
+
+ /**
+  *Fetch the information from Xwiki.
+  */
+ REDMINE_CUSTOM_OBJECT = xwiki.getDocument("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfiguration").getObject("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfigurationClass")
+ REDMINE_XWIKI_NAME = doc.getDocument().getWikiName()
+
+ if(null == REDMINE_CUSTOM_OBJECT){
+     REDMINE_XWIKI_NAME = "xwiki"
+     REDMINE_CUSTOM_OBJECT = xwiki.getDocument("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfiguration").getObject("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfigurationClass")
+ }
+
+ REDMINE_CLOSE_STATUS_VALUE = "5"
+ REDMINE_DEFAULT_URL = REDMINE_CUSTOM_OBJECT.getProperty("redmineUrl").value
+ REDMINE_AUTH_KEY = "key=".concat(REDMINE_CUSTOM_OBJECT.getProperty("redmineUserApiKey").value)
+ REDMINE_MACRO_PARAMS = "$xcontext.macro.params.params".replaceAll('issues', 'issues.json')
+
+
+ def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro-${randomInt}\" %)"
+ def tableHeader = "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "
+
+ def issueUrls = [] as ArrayList
+ def issueList = [] as ArrayList
+
+ try {
+
+     if(REDMINE_MACRO_PARAMS.contains("?") &amp;&amp; REDMINE_MACRO_PARAMS.contains("http")){
+  REDMINE_QUERY = REDMINE_MACRO_PARAMS.concat("&amp;").concat(REDMINE_AUTH_KEY)
+  def root = new JsonSlurper().parseText(REDMINE_QUERY.toURL().text)
+  root.issues.each() { issue -&gt;
+      issueList.add(issue)
+  }
+  println tableSortableCfg
+     }else{
+  REDMINE_MACRO_PARAMS = REDMINE_MACRO_PARAMS.replaceAll(" ", "")
+  for(issueNumber in REDMINE_MACRO_PARAMS.split(",")) {
+      def issueUrl = REDMINE_DEFAULT_URL.concat("/issues/".concat(issueNumber).concat(".json").concat("?").concat(REDMINE_AUTH_KEY))
+      def root = new JsonSlurper().parseText(issueUrl.toURL().text)
+      issueList.add(root.issue)
+  }
+     }
+
+     println tableHeader
+     for(issue in issueList) {
+  if(REDMINE_CLOSE_STATUS_VALUE.equalsIgnoreCase("${issue.status.id}")) {
+      println "| --[[#${issue.id}&gt;&gt;url:$REDMINE_DEFAULT_URL/issues/${issue.id}|]]-- | --{{{ ${issue.tracker.name} }}}-- | --{{{ ${issue.status.name} }}}-- | --{{{ ${issue.subject} }}}--"
+  }else {
+      println "| [[#${issue.id}&gt;&gt;url:$REDMINE_DEFAULT_URL/issues/${issue.id}|]] | {{{ ${issue.tracker.name} }}} | {{{ ${issue.status.name} }}} | {{{ ${issue.subject} }}}"
+  }
+     }
+ } catch( Exception e ){
+     println "Something went wrong. Please contact the developer."
+     println "{{error}} {{{ $e }}} {{/error}}"
+ }{{/groovy}}
       </code>
     </property>
     <property>
