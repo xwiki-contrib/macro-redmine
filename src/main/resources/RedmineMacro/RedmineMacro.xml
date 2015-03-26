@@ -161,9 +161,9 @@
 	  {{velocity}}        $xwiki.ssfx.use("js/xwiki/table/table.css")
         $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
         {{/velocity}}
- jh{{groovy}}import groovy.json.*
+ {{groovy}}import groovy.json.*
   /**
-  * Creating random id
+  * Creating random id to enable n macros at one page.
   */
  def random = new Random()
  def randomInt = random.nextInt(200-100+1)+100
