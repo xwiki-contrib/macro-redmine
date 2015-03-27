@@ -66,9 +66,8 @@
     <!-- Old names of this module used for retro compatibility when resolving dependencies of old extensions -->
     <xwiki.extension.features>org.xwiki.contrib:xwiki-macro-redmine</xwiki.extension.features>
   </properties>
-
+  
   <build>
-    <!-- Needed to add support for the XAR packaging -->
     <extensions>
       <extension>
         <groupId>org.xwiki.commons</groupId>
@@ -77,25 +76,10 @@
       </extension>
     </extensions>
     <plugins>
-      <!-- The XAR packaging uses the XAR plugin and thus we need to define what version to use -->
       <plugin>
         <groupId>org.xwiki.commons</groupId>
         <artifactId>xwiki-commons-tool-xar-plugin</artifactId>
         <version>${commons.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
