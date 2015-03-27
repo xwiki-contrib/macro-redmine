@@ -161,9 +161,10 @@
 	  {{velocity}}        $xwiki.ssfx.use("js/xwiki/table/table.css")
         $xwiki.jsfx.use("js/xwiki/table/tablefilterNsort.js", true)
         {{/velocity}}
- {{groovy}}import groovy.json.*
-  /**
-  * Creating random id to enable n macros at one page.
+ {{groovy}}
+import groovy.json.*
+/**
+  * Creating random id
   */
  def random = new Random()
  def randomInt = random.nextInt(200-100+1)+100
@@ -173,14 +174,23 @@
   */
  def REDMINE_XWIKI_NAME = "xwiki"
  def REDMINE_CUSTOM_OBJECT = ""
- def REDMINE_AUTH_KEY = ""
+ def REDMINE_AUTH_KEY_VALUE = ""
+ def REDMINE_AUTH_KEY_ID = "key="
  def REDMINE_DEFAULT_URL = "http://redmine.org"
- def REDMINE_MACRO_PARAMS = "http://www.redmine.org/projects/redmine/issues.json?query_id=1"
+ def REDMINE_MACRO_PARAMS = "1000,1001,http://www.redmine.org/issues".replaceAll("/issues", "/issues.json")
  def REDMINE_CLOSE_STATUS_VALUE = "5"
  def REDMINE_QUERY = ""
+ def issueUrls = [] as ArrayList
+ def issueList = [] as ArrayList
 
  /**
-  *Fetch the information from Xwiki.
+  * Setting macro table information.
+  */
+ def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro-${randomInt}\" %)"
+ def tableHeader = "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "
+
+ /**
+  *Fetch the information from Xwiki and set the objects.
   */
  REDMINE_CUSTOM_OBJECT = xwiki.getDocument("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfiguration").getObject("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfigurationClass")
  REDMINE_XWIKI_NAME = doc.getDocument().getWikiName()
@@ -190,36 +200,34 @@
      REDMINE_CUSTOM_OBJECT = xwiki.getDocument("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfiguration").getObject("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfigurationClass")
  }
 
- REDMINE_CLOSE_STATUS_VALUE = "5"
  REDMINE_DEFAULT_URL = REDMINE_CUSTOM_OBJECT.getProperty("redmineUrl").value
- REDMINE_AUTH_KEY = "key=".concat(REDMINE_CUSTOM_OBJECT.getProperty("redmineUserApiKey").value)
- REDMINE_MACRO_PARAMS = "$xcontext.macro.params.params".replaceAll('issues', 'issues.json')
-
-
- def tableSortableCfg = "(% class=\"sortable filterable doOddEven\" id=\"redmineMacro-${randomInt}\" %)"
- def tableHeader = "(% class=\"sortHeader\" %)|= ID |= Tracker |= Status |= Thema "
-
- def issueUrls = [] as ArrayList
- def issueList = [] as ArrayList
+ REDMINE_AUTH_KEY_VALUE = REDMINE_CUSTOM_OBJECT.getProperty("redmineUserApiKey").value
+ REDMINE_MACRO_PARAMS = "$xcontext.macro.params.params".replaceAll("/issues", "/issues.json")
 
  try {
 
-     if(REDMINE_MACRO_PARAMS.contains("?") &amp;&amp; REDMINE_MACRO_PARAMS.contains("http")){
-  REDMINE_QUERY = REDMINE_MACRO_PARAMS.concat("&amp;").concat(REDMINE_AUTH_KEY)
-  def root = new JsonSlurper().parseText(REDMINE_QUERY.toURL().text)
-  root.issues.each() { issue -&gt;
-      issueList.add(issue)
-  }
-  println tableSortableCfg
-     }else{
-  REDMINE_MACRO_PARAMS = REDMINE_MACRO_PARAMS.replaceAll(" ", "")
-  for(issueNumber in REDMINE_MACRO_PARAMS.split(",")) {
-      def issueUrl = REDMINE_DEFAULT_URL.concat("/issues/".concat(issueNumber).concat(".json").concat("?").concat(REDMINE_AUTH_KEY))
+     for(param in REDMINE_MACRO_PARAMS.split(",")) {
+  if(param.contains("http")){
+      if(!param.contains("?")){
+   param = param.concat("?key=").concat(REDMINE_AUTH_KEY_VALUE)
+      }else {
+   param = param.concat("&amp;").concat(REDMINE_AUTH_KEY_ID).concat(REDMINE_AUTH_KEY_VALUE)
+      }
+      def root = new JsonSlurper().parseText(param.toURL().text)
+      root.issues.each() { issue -&gt; issueList.add(issue) }
+  }else{
+      param = param.replaceAll(" ", "")
+      def issueUrl = param
+      issueUrl = REDMINE_DEFAULT_URL.concat("/issues/".concat(param).concat(".json").concat("?").concat(REDMINE_AUTH_KEY_ID).concat(REDMINE_AUTH_KEY_VALUE))
       def root = new JsonSlurper().parseText(issueUrl.toURL().text)
       issueList.add(root.issue)
   }
      }
 
+     /**
+      * Printing Table and iterating issues list.
+      */
+     println tableSortableCfg
      println tableHeader
      for(issue in issueList) {
   if(REDMINE_CLOSE_STATUS_VALUE.equalsIgnoreCase("${issue.status.id}")) {
@@ -231,7 +239,9 @@
  } catch( Exception e ){
      println "Something went wrong. Please contact the developer."
      println "{{error}} {{{ $e }}} {{/error}}"
- }{{/groovy}}
+ }
+  
+ {{/groovy}}
       </code>
     </property>
     <property>

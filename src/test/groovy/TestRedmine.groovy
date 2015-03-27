@@ -26,7 +26,7 @@ class TestRedmine {
 	def REDMINE_QUERY = ""
 
 	/**
-	 *Fetch the information from Xwiki.
+	 *Fetch the information from Xwiki and set the objects.
 	 */
 	REDMINE_CUSTOM_OBJECT = xwiki.getDocument("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfiguration").getObject("$REDMINE_XWIKI_NAME:RedmineMacro.RedmineMacroConfigurationClass")
 	REDMINE_XWIKI_NAME = doc.getDocument().getWikiName()
