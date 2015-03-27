@@ -35,14 +35,14 @@
   <packaging>xar</packaging>
 
   <name>Redmine Macro</name>
-  <version>0.0.8-SNAPSHOT</version>
+  <version>0.0.8</version>
   <description>Displays issues from a Redmine instance</description>
 
   <scm>
     <connection>scm:git:git://github.com/xwiki-contrib/macro-redmine.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/macro-redmine.git</developerConnection>
     <url>https://github.com/xwiki-contrib/macro-redmine</url>
-    <tag>HEAD</tag>
+    <tag>macro-redmine-0.0.8</tag>
   </scm>
   
   <issueManagement>
