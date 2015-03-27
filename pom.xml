@@ -35,7 +35,7 @@
   <packaging>xar</packaging>
 
   <name>Redmine Macro</name>
-  <version>0.0.9-SNAPSHOT</version>
+  <version>0.0.8-SNAPSHOT</version>
   <description>Displays issues from a Redmine instance</description>
 
   <scm>
